@@ -6,8 +6,7 @@ import { useState } from "react";
 
 const Search = () => {
   const [user, setUser] = React.useState(``);
-  const { requests } = React.useContext(GithubContext);
-  console.log(requests);
+  const { requests, error } = React.useContext(GithubContext);
 
   //get from global context
   const handleSubmit = (e) => {
@@ -17,6 +16,7 @@ const Search = () => {
   return (
     <section className="section">
       <Wrapper className="section-center">
+        {error.show && <ErrorWrapper>{error.msg}</ErrorWrapper>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch />
